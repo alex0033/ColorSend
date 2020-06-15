@@ -7,8 +7,6 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'bootstrap-sass', '~>3.4.1'
 
-gem "jquery-rails"
-
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
