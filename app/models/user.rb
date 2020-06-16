@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: %i[facebook]
+         :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
 
@@ -18,4 +18,13 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
+      end
+    end
+  end
+
 end
