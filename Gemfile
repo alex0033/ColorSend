@@ -14,6 +14,9 @@ gem 'omniauth-facebook'
 
 gem 'dotenv-rails'
 
+gem 'will_paginate'          
+gem 'bootstrap-will_paginate'
+
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
