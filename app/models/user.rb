@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[facebook]
 
-  validates :name, presence: true, unique: true, length: { maximum: 50 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
