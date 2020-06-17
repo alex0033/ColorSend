@@ -10,7 +10,7 @@ threads min_threads_count, max_threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port        ENV.fetch("PORT") { 3000 }
+#port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -35,9 +35,9 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # preload_app!
 
 
-cert = "/home/alex/.local/share/mkcert/localhost.pem"
-key = "/home/alex/.local/share/mkcert/localhost-key.pem"
-ssl_bind "0.0.0.0", 9292, cert: cert, key: key
+cert = ENV['CERT_PATH']
+key  = ENV['KEY_PATH']
+ssl_bind "0.0.0.0", 3000, cert: cert, key: key
 
 
 
