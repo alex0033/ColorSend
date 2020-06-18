@@ -11,7 +11,6 @@ class User < ApplicationRecord
   validates :uid, presence: true, uniqueness: true  # このエラーだけだとわかりにくいのでcontrollerでエラーメッセージを追加する
 
 
-
   # このメソッドでは、uidと一致するユーザーをDBから探す
   # 無ければ新たに作る（この時点でsaveはされない）
   def self.from_omniauth(auth)
