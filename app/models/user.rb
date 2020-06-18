@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   validates :name,      presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }
+  validates :password,  presence: true, length: { minimum: 6 }
+  validates :uid, presence: true, uniqueness: true  # このエラーだけだとわかりにくいのでcontrollerでエラーメッセージを追加する
+
+
 
   # このメソッドでは、uidと一致するユーザーをDBから探す
   # 無ければ新たに作る（この時点でsaveはされない）
