@@ -8,12 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # facebook認証後のみサインアップページへ行ける
   # nameとuidのみ取り出し、利用する
   def new
-    if auth = session && session["devise.facebook_data"]
+    if auth = set_object(session, "devise.facebook_data")
       auth_uid  = auth["uid"]
-      auth_info =
-      @name     = auth["info"]["name"]
       uid_filter auth_uid
       @user = User.new
+      @user.name = set_object auth["info"], "name"
     else
       authenticate_error
     end
@@ -82,10 +81,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # nameはparamsの値を優先させる
     # nilガードは必要か？？
     def user_hash
-      if session && params &&
-         session["devise.facebook_data"] &&
-         params[:user]&&
-         session["devise.facebook_data"]["info"]
+      if set_object(params, :user) &&
+          check_objects(session, "devise.facebook_data", "info")
 
         auth = session["devise.facebook_data"]
         user = params[:user]
@@ -101,7 +98,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
           uid:       auth["uid"],
         }
       end
-
     end
 
     def uid_filter(uid)
@@ -120,11 +116,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #   flash[:danger] = "Session is nil."
     #   redirect_to root_url
     # end
-    #
-    # # object[keyword]で例外の発生を防ぐ
-    # # objectがnilならnilを返す
-    # def set_object(object, keyword)
-    #   return object && object[keyword]
-    # end
+
+    # object[keyword]で例外の発生を防ぐ
+    # objectがnilならnilを返す
+    def set_object(object, keyword)
+      item = object && object[keyword]
+      return nil unless item
+      return item
+    end
+
+    def check_objects(object, first_keyword, second_keyword)
+      object && object[first_keyword] &&
+             object[first_keyword][second_keyword]
+    end
 
 end

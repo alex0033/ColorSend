@@ -1,4 +1,3 @@
-<% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
 <div class="row">
@@ -7,16 +6,16 @@
       <%= render "devise/shared/error_messages", resource: f.object %>
 
       <%= f.label :name %><br>
-      <%= f.text_field :name, class: "form-controll", value: @name %><br>
+      <%= f.text_field :name, class: "form-controll", value: @user.name %><br>
 
       <%= f.label :user_name %><br>
-      <%= f.text_field :user_name, class: "form-controll" %><br>
+      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %><br>
 
       <%= f.label :password %><br>
-      <%= f.password_field :password, class: "form-controll" %><br>
+      <%= f.password_field :password, class: "form-controll", value: @user.password %><br>
 
       <%= f.label :password_confirmation, "Confirmation" %><br>
-      <%= f.password_field :password_confirmation, class: "form-controll" %><br>
+      <%= f.password_field :password_confirmation, class: "form-controll", value: @user.password_confirmation %><br>
 
       <%= f.submit "Create my acount", class: "btn btn-primary mt-3" %><br>
     <% end %>

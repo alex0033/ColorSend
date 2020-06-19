@@ -1,21 +1,16 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
-         :omniauthable, omniauth_providers: [:facebook]
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   validates :name,      presence: true,  length: { maximum: 50 }
   validates :user_name, presence: true,  length: { maximum: 50 }
-  validates :password,  presence: true,  length: { minimum: 6 }
   validates :uid,       presence: true,  uniqueness: true
-  validates :email,     presence: true,  uniqueness: true,
-                        allow_nil: true, format: { with: VALID_EMAIL_REGEX },
-                        length:   { maximum: 150 }
-
-
+  validates :self_introduction, length: { maximum: 500 }
+  validates :website,           length: { maximum: 500 }
+  validates :gender,            length: { maximum: 30 }
+  validates :image,             presence: true
 
   # このメソッドでは、uidと一致するユーザーをDBから探す
   # 無ければ新たに作る（この時点でsaveはされない）
@@ -39,4 +34,20 @@ class User < ApplicationRecord
   #   end
   # end
 
+  protected
+
+    # emailがnilのときバリデーションが働かない
+    def email_required?
+      email_blank_to_nil
+      self.email
+    end
+
+
+  private
+
+     def email_blank_to_nil
+       if self.email.blank?
+         self.email = nil
+       end
+     end
 end
