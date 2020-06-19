@@ -6,9 +6,13 @@
       </div>
       <div class="header-list">
         <ul class="row">
-          <li class="col-xs-4"><%= link_to "検索", "#" %></li>
-          <li class="col-xs-4"><%= link_to "通知", "#" %></li>
-          <li class="col-xs-4"><%= link_to "マイ", "#" %></li>
+          <% if user_signed_in? %>
+            <li class="col-xs-4"><%= link_to "検索", "#" %></li>
+            <li class="col-xs-4"><%= link_to "通知", "#" %></li>
+            <li class="col-xs-4"><%= link_to "マイ", user_path(current_user) %></li>
+          <% else %>
+            <li><%= link_to "サインイン", user_facebook_omniauth_authorize_path, { method: "post" } %>
+          <% end %>
         </ul>
       </div>
     </div>

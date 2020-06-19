@@ -8,12 +8,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # facebook認証後のみサインアップページへ行ける
   # nameとuidのみ取り出し、利用する
   def new
-    if auth = session["devise.facebook_data"]
-      auth_uid = auth["uid"]
-      @name    = auth["info"]["name"]
+    if auth = session && session["devise.facebook_data"]
+      auth_uid  = auth["uid"]
+      auth_info =
+      @name     = auth["info"]["name"]
+      uid_filter auth_uid
+      @user = User.new
+    else
+      authenticate_error
     end
-    uid_filter auth_uid
-    @user = User.new
   end
 
   # POST /resource
@@ -22,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     uid_filter @user.uid
     if @user.save
       sign_in @user
-      redirect_to @user
+      redirect_to user_url(@user)
     else
       render 'devise/registrations/new'
     end
@@ -77,27 +80,51 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
     # nameはparamsの値を優先させる
+    # nilガードは必要か？？
     def user_hash
-      auth = session["devise.facebook_data"]
-      user = params[:user]
-      {
-        name:                  user[:name],
-        user_name:             user[:user_name],
-        password:              user[:password],
-        password_confirmation: user[:password_confirmation],
+      if session && params &&
+         session["devise.facebook_data"] &&
+         params[:user]&&
+         session["devise.facebook_data"]["info"]
 
-        email:     auth["info"]["email"],
-        image:     auth["info"]["image"],
-        provider:  auth["provider"],
-        uid:       auth["uid"],
-      }
+        auth = session["devise.facebook_data"]
+        user = params[:user]
+        {
+          name:                  user[:name],
+          user_name:             user[:user_name],
+          password:              user[:password],
+          password_confirmation: user[:password_confirmation],
+
+          email:     auth["info"]["email"],
+          image:     auth["info"]["image"],
+          provider:  auth["provider"],
+          uid:       auth["uid"],
+        }
+      end
+
     end
 
     def uid_filter(uid)
       if uid.blank?
-        flash[:danger] = "Please click 'さぁ、はじめよう' to login facebook."
-        redirect_to root_url
+        authenticate_error
       end
     end
+
+    def authenticate_error
+      flash[:danger] = "Please click 'さぁ、はじめよう' to login facebook."
+      redirect_to root_url
+    end
+
+    # 予期せぬエラー
+    # def session_nil_error
+    #   flash[:danger] = "Session is nil."
+    #   redirect_to root_url
+    # end
+    #
+    # # object[keyword]で例外の発生を防ぐ
+    # # objectがnilならnilを返す
+    # def set_object(object, keyword)
+    #   return object && object[keyword]
+    # end
 
 end

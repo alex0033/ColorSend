@@ -5,10 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  validates :name,      presence: true, length: { maximum: 50 }
-  validates :user_name, presence: true, length: { maximum: 50 }
-  validates :password,  presence: true, length: { minimum: 6 }
-  validates :uid, presence: true, uniqueness: true  # このエラーだけだとわかりにくいのでcontrollerでエラーメッセージを追加する
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :name,      presence: true,  length: { maximum: 50 }
+  validates :user_name, presence: true,  length: { maximum: 50 }
+  validates :password,  presence: true,  length: { minimum: 6 }
+  validates :uid,       presence: true,  uniqueness: true
+  validates :email,     presence: true,  uniqueness: true,
+                        allow_nil: true, format: { with: VALID_EMAIL_REGEX },
+                        length:   { maximum: 150 }
+
 
 
   # このメソッドでは、uidと一致するユーザーをDBから探す

@@ -5,6 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  name:                  "example"
-  email:                 "example@foo.com"
-  encrypted_password:    <%= Devise::Encryptor.digest(User, "password") %>
+  name:               "example"
+  user_name:          "exa"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  provider:           "facebook"
+  uid:                "12344556"
+  image:              "https://localhost:3000"
