@@ -11,3 +11,4 @@ one:
   provider:           "facebook"
   uid:                "12344556"
   image:              "https://localhost:3000"
+  phone_number:       11111111111

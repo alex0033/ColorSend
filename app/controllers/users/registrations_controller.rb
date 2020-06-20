@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params,        only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_sign_up_params,        only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # facebook認証後のみサインアップページへ行ける
@@ -31,14 +31,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @user = current_user
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user.update(edit_params)
+    if @user.save
+      flash[:sucess] = "success edit"
+      redirect_to user_path(@user)
+    else
+      render 'devise/registrations/edit'
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -57,14 +63,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
     # If you have extra params to permit, append them to the sanitizer.
-    def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :user_name])
-    end
-
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_name])
-    end
+    # def configure_sign_up_params
+    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :user_name])
+    # end
+    #
+    # # If you have extra params to permit, append them to the sanitizer.
+    # def configure_account_update_params
+    #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_name])
+    # end
 
     # The path used after sign up.
     # def after_sign_up_path_for(resource)
@@ -100,6 +106,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+    def edit_params
+      params.require(:user).permit(:name, :user_name, :self_introduction,
+                                   :website, :phone_number, :email, :gender)
+    end
+
     def uid_filter(uid)
       if uid.blank?
         authenticate_error
@@ -110,12 +121,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:danger] = "Please click 'さぁ、はじめよう' to login facebook."
       redirect_to root_url
     end
-
-    # 予期せぬエラー
-    # def session_nil_error
-    #   flash[:danger] = "Session is nil."
-    #   redirect_to root_url
-    # end
 
     # object[keyword]で例外の発生を防ぐ
     # objectがnilならnilを返す

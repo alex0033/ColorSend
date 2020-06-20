@@ -1,7 +1,7 @@
 require 'test_helper'
+include Warden::Test::Helpers
 
 class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
-  include Warden::Test::Helpers
 
   def setup
     @new_user   = User.new(name: "foobar", user_name: "foo",
