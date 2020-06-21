@@ -1,3 +1,5 @@
 <h1>Users#show</h1>
-  <%= @user.user_name %>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= @user.user_name %>
+<% if @user == current_user %>
+  <p>登録情報の編集は<%= link_to "こちら", edit_user_registration_path %></p>
+<% end %>
