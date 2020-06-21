@@ -63,6 +63,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(user)
     follow_redirect!
     assert_template 'users/show'
+
     # アカウント削除
     assert_select 'a[href=?]', edit_user_registration_path
     get edit_user_registration_path
@@ -72,9 +73,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_not flash.empty?
     assert_not User.all.include?(user)
-
   end
-
 
   test "sign in and sign out" do
     setMock_auth_for_saved_user
@@ -95,7 +94,6 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     follow_redirect!
     assert_not flash.empty?
-
   end
 
 end
