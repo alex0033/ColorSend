@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'microposts/new'
+  get 'microposts/show'
   root 'basic_pages#home'
   devise_for :users, controllers: {
     :omniauth_callbacks => 'users/omniauth_callbacks',

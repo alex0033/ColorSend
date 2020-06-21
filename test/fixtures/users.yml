@@ -12,3 +12,12 @@ one:
   uid:                "12344556"
   image:              "https://localhost:3000"
   phone_number:       11111111111
+
+two:
+  name:               "second"
+  user_name:          "sec"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  provider:           "facebook"
+  uid:                "111111111"
+  image:              "https://localhost:3000"
+  phone_number:       132333111111

@@ -20,7 +20,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_match_unless_nil "phone_number"
     assert_match_unless_nil "email"
     assert_match_unless_nil "gender"
-
+    
     # fail edit
     patch user_registration_path, params: { user: {name: @user.name,
                                               user_name: "",
