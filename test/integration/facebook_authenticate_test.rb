@@ -27,7 +27,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     })
   end
 
-  test "sign up and delete account" do
+  test "sign up" do
     setMock_auth_for_new_user
 
     # 無効なサインアップページアクセス
@@ -63,19 +63,10 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(user)
     follow_redirect!
     assert_template 'users/show'
-
-    # アカウント削除
-    assert_select 'a[href=?]', edit_user_registration_path
-    get edit_user_registration_path
-    # assert_select 'a[href=?]', user_registration_path
-    delete user_registration_path
-    assert_redirected_to root_path
-    follow_redirect!
-    assert_not flash.empty?
-    assert_not User.all.include?(user)
   end
 
-  test "sign in and sign out" do
+
+  test "sign in" do
     setMock_auth_for_saved_user
 
     login_as(@saved_user, scope: :user)
@@ -86,14 +77,6 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'users/show'
     assert_match @saved_user.user_name, response.body
-    # assert is_logged_in?
-
-    # logout
-    # assert_select "a[herf=?]", destroy_user_session_path
-    delete destroy_user_session_path
-    assert_redirected_to root_path
-    follow_redirect!
-    assert_not flash.empty?
   end
 
 end

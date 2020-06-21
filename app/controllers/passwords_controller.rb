@@ -18,7 +18,7 @@ class PasswordsController < ApplicationController
       render 'passwords/edit' and return
     end
     current_password_check = @user.reload.valid_password?(params[:user][:current_password])
-    if current_password_check &&
+    if @user.valid? && current_password_check &&
         @user.reset_password(@user.password, @user.password_confirmation)
       flash[:success] = "Success edit password"
       bypass_sign_in @user

@@ -20,7 +20,6 @@ class PasswordEditTest < ActionDispatch::IntegrationTest
                                             password_confirmation: new_password } }
     assert_template 'passwords/edit'
     user = assigns(:user)
-    assert user.valid?
     assert user.errors.empty?
     assert_not flash.empty?
 
@@ -30,7 +29,6 @@ class PasswordEditTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "foobaz" } }
     assert_template 'passwords/edit'
     user = assigns(:user)
-    assert_not user.valid?
     assert_not user.errors.empty?
     assert flash.empty?
 
@@ -40,7 +38,6 @@ class PasswordEditTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "foobaz" } }
     assert_template 'passwords/edit'
     user = assigns(:user)
-    assert_not user.valid?
     assert_not user.errors.empty?
     assert_not flash.empty?
 
