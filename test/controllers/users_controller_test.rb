@@ -7,20 +7,30 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
   end
 
-  test "should get index" do
+  test "should not get index" do
     get users_url
-    assert_redirected_to ~~
+    assert_redirected_to root_path
+    follow_redirect!
+    assert_match error_message, response.body
+  end
+
+  test "should get index" do
     login_as(@user, scope: :user)
     get users_url
     assert_response :success
   end
 
   test "should get show" do
-    get user_url(@user)
-    assert_redirected_to ~~ 
     login_as(@user, scope: :user)
-    get user_url(@user)
+    get user_path(@user)
     assert_response :success
+  end
+
+  test "should not get show" do
+    get user_path(@user)
+    assert_redirected_to root_path
+    follow_redirect!
+    assert_match error_message, response.body
   end
 
 end

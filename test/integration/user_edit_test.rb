@@ -20,7 +20,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_match_unless_nil "phone_number"
     assert_match_unless_nil "email"
     assert_match_unless_nil "gender"
-    
+
     # fail edit
     patch user_registration_path, params: { user: {name: @user.name,
                                               user_name: "",
@@ -41,7 +41,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     user = assigns(:user)
     assert_equal "success_user", user.user_name
     assert user.errors.empty?
-    assert_redirected_to user_path(@user)
+    assert_redirected_to @user
     follow_redirect!
     assert_template 'users/show'
   end

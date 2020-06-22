@@ -22,7 +22,7 @@ class PasswordsController < ApplicationController
       @user.reset_password(@user.password, @user.password_confirmation)
       flash[:success] = "Success edit password"
       bypass_sign_in @user
-      redirect_to user_url(@user) and return
+      redirect_to @user and return
     elsif !(current_password_check)
       flash.now[:danger] = "current password is wrong"
     end

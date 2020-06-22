@@ -48,7 +48,7 @@ class PasswordEditTest < ActionDispatch::IntegrationTest
     user = assigns(:user)
     assert user.errors.empty?
     assert_not flash.empty?
-    assert_redirected_to user_url(user)
+    assert_redirected_to user
     follow_redirect!
     assert_template 'users/show'
     user = assigns(:user)

@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     uid_filter @user.uid
     if @user.save
       sign_in @user
-      redirect_to user_url(@user)
+      redirect_to @user
     else
       render 'devise/registrations/new'
     end
@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.update(edit_params)
     if @user.save
       flash[:sucess] = "success edit"
-      redirect_to user_path(@user)
+      redirect_to @user
     else
       render 'devise/registrations/edit'
     end

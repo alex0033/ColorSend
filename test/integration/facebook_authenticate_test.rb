@@ -60,7 +60,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
                                                password: @new_user.password,
                                   password_confirmation: @new_user.password_confirmation } }
     user = assigns(:user)
-    assert_redirected_to user_url(user)
+    assert_redirected_to user
     follow_redirect!
     assert_template 'users/show'
 
@@ -82,7 +82,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
     get user_facebook_omniauth_authorize_path
     assert_redirected_to user_facebook_omniauth_callback_path
     follow_redirect!
-    assert_redirected_to user_url(@saved_user)
+    assert_redirected_to @saved_user
     follow_redirect!
     assert_template 'users/show'
     assert_match @saved_user.user_name, response.body

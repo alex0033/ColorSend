@@ -1,17 +1,19 @@
 <h1>Users#show</h1>
-<%= @user.image %>
+<%= image_tag @user.image %>
 <%= @user.user_name %>
-<%= @user.name %>
-<%= @user.self_introduction %>
-<%= @user.website %>
+<%= @user.name %><br>
+<%= @user.self_introduction %><br>
+<%= @user.website %><br>
 <% if @user == current_user %>
   <p>登録情報の編集は<%= link_to "こちら", edit_user_registration_path %></p>
 <% end %>
 
-<% which_micropost = "image_plus_post" %>
-<div class="row">
-  <!-- 後ほどグリッドデザイン -->
-  <ol class="microposts">
-    <%= render @microposts %>
-  </ol>
-</div>
+<% if @microposts %>
+  <% @which_micropost = "image_plus_post" %>
+  <div class="row">
+    <!-- 後ほどグリッドデザイン -->
+    <ol class="microposts">
+      <%= render @microposts %>
+    </ol>
+  </div>
+<% end %>

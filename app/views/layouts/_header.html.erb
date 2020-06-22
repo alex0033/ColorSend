@@ -9,7 +9,7 @@
           <% if user_signed_in? %>
             <li class="col-xs-3"><%= link_to "検索", "#" %></li>
             <li class="col-xs-3"><%= link_to "通知", "#" %></li>
-            <li class="col-xs-3"><%= link_to "マイ", user_path(current_user) %></li>
+            <li class="col-xs-3"><%= link_to "マイ", current_user %></li>
             <li class="col-xs-3"><%= link_to "ロア", destroy_user_session_path, {method: :delete} %></li>
           <% else %>
             <li><%= link_to "サインイン", user_facebook_omniauth_authorize_path %>

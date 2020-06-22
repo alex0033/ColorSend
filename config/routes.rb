@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     :sessions           => 'users/sessions'
   }
   resources :users,      only: [:index, :show]
-  resources :microposts, only: [:new, :create, :destroy]
+  resources :microposts, only: [:new, :create, :show, :destroy]
   get   'passwords/edit'
   patch 'passwords/update'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

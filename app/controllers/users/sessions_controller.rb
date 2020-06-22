@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
   # def create
   #   @user = User.find_or_create_from_auth_hash(auth_hash)
   #   self.current_user = @user
-  #   redirect_to user_path @user
+  #   redirect_to @user
   # end
 
   # DELETE /resource/sign_out
@@ -20,9 +20,9 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # ルーティングを変更
-  def after_sign_in_path_for(resource_or_scope)
-    user_path(resource_or_scope)
-  end
+  # def after_sign_in_path_for(resource_or_scope)
+  #   user_path(resource_or_scope)
+  # end
 
   # protected
 
@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   # end
 
-  def auth_hash
-    request.env['omniauth.auth']
-  end
+  # def auth_hash
+  #   request.env['omniauth.auth']
+  # end
 end
