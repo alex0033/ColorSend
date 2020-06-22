@@ -33,6 +33,7 @@ class User < ApplicationRecord
     self.microposts
   end
 
+
   protected
 
     # emailがnilのときバリデーションが働かないようにする
@@ -40,7 +41,6 @@ class User < ApplicationRecord
       email_blank_to_nil
       self.email
     end
-
 
   private
 

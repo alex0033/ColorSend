@@ -1,10 +1,6 @@
 <% provide(:title, "home") %>
-<div class="not-logged-in-home">
-  <div class="container">
-    <div class="text-zone mt-9">
-      <h1>ColorSend</h1>
-      <h3>〜日常に彩りを〜</h3>
-      <%= button_to "さぁ、はじめよう！！", user_facebook_omniauth_authorize_path, method: "post", class: "btn btn-primary" %>
-    </div>
-  </div>
-</div>
+<% if user_signed_in %>
+  <%= render 'basic_pages/after_signed_in' %>
+<% else %>
+  <%= render 'basic_pages/before_signed_in' %>
+<% end %>
