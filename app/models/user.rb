@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # micropost Modelとの紐付け
+  # Userのインスタンスが消えるとMicropostも消える
+  has_many :microposts, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -26,17 +29,13 @@ class User < ApplicationRecord
     end
   end
 
-  # def self.new_with_session(params, session)
-  #   super.tap do |user|
-  #     if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
-  #       user.email = data['email'] if user.email.blank?
-  #     end
-  #   end
-  # end
+  def feed
+    self.microposts
+  end
 
   protected
 
-    # emailがnilのときバリデーションが働かない
+    # emailがnilのときバリデーションが働かないようにする
     def email_required?
       email_blank_to_nil
       self.email

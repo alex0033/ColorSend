@@ -14,8 +14,12 @@ gem 'omniauth-facebook'
 
 gem 'dotenv-rails'
 
-gem 'will_paginate'          
+gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
+gem 'active_storage_validations'
+gem 'image_processing'
+gem 'mini_magick'
 
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
