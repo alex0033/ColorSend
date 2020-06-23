@@ -1,9 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  content: MyText
-  micopost: one
-
-two:
-  content: MyText
-  micopost: two
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# one:
+#   content: MyText
+#   micopost: one
+#
+# two:
+#   content: MyText
+#   micopost: two

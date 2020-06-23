@@ -21,6 +21,8 @@ class MicropostsController < ApplicationController
   def show
     @micropost = Micropost.find(params[:id])
     @user      = User.find(@micropost.user_id)
+    @comment   = Comment.new
+    @comments  = @micropost.comments
   end
 
   def destroy

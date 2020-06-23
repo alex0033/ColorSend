@@ -1,19 +1,23 @@
 <h1>Microposts#show</h1>
 <div class="input-form">
-  <%= form_with(model: @new_comment, local: true) do |f| %>
+  <%= form_with(model: @comment, local: true) do |f| %>
     <%= render "devise/shared/error_messages", resource: f.object %>
 
-    <%= f.text_field :comment, class: "form-controll",
+    <%= f.text_field :content, class: "form-controll",
                          placeholder: "コメントを入力してください" %><br>
 
+    <%= hidden_field_tag :micropost_id, @micropost.id %>
+    <%#= f.hidden_field :user_number, @user_account.user_number %>
     <%= f.submit "送信", class: "btn btn-primary mt-3" %><br>
   <% end %>
 </div>
 
 <%= render "shared/image_plus_post", micropost: @micropost %>
 <!-- コメント欄 -->
-<div class="comments">
-  <ul>
-    <%= render @comments %>
-  </ul>
-</div>
+<% if @comments %>
+  <div class="comments">
+    <ul>
+      <%= render @comments %>
+    </ul>
+  </div>
+<% end %>

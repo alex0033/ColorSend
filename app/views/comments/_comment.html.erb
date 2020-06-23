@@ -2,7 +2,7 @@
   <% user = comment.user %>
   <%= image_tag user.image %>
   <%= user.user_name %><br>
-  <%= comment %><br>
+  <%= comment.content %><br>
   <%#= link_to "編集", "#" %>
   <%= link_to "削除", "#" %>
 </li>
