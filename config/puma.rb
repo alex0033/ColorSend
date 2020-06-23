@@ -53,6 +53,8 @@ plugin :tmp_restart
 
 
 # local環境のSSL化
-cert = ENV['CERT_PATH']
-key  = ENV['KEY_PATH']
-ssl_bind "0.0.0.0", 3001, cert: cert, key: key
+if Rails.env.development?
+  cert = ENV['CERT_PATH']
+  key  = ENV['KEY_PATH']
+  ssl_bind "0.0.0.0", 3001, cert: cert, key: key
+end
