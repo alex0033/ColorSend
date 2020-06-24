@@ -6,6 +6,7 @@
   <%= image_tag micropost.display_image %>
 </span>
 <span>
+  <%= render 'shared/like', micropost: micropost %>
   <!-- <i>ハート</i><%#= micropost.likes.count %> -->
   <!-- <i>コメント</i><%#= micropost.coments.count %> -->
 </span>

@@ -31,6 +31,11 @@ class User < ApplicationRecord
     end
   end
 
+  # 戻り値としてnilかLikeインスタンスが返る
+  def like?(micropost)
+    micropost.likes.find_by(user: self)
+  end
+
   def feed
     self.microposts
   end

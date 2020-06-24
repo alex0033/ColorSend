@@ -51,7 +51,19 @@ class PostTest < ActionDispatch::IntegrationTest
     assert_match content, response.body
 
     # twoがmicropostのいいねボタンを押す
-    #post likes_path, params: { like: { user_id: user.id } }
+    assert_difference 'Like.count', 1 do
+      post likes_path, params: { micropost_id: micropost.id }
+    end
+    like = assigns(:like)
+    assert_redirected_to micropost
+    follow_redirect!
+
+    # twoがいいねボタンを取り消す
+    assert_difference 'Like.count', -1 do
+      delete like_path(like)
+    end
+    assert_redirected_to micropost
+    follow_redirect!
 
   end
 end
