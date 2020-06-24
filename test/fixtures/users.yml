@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id:                 1
   name:               "example"
   user_name:          "exa"
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
@@ -14,6 +15,7 @@ one:
   phone_number:       11111111111
 
 two:
+  id:                 2
   name:               "second"
   user_name:          "sec"
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>

@@ -15,7 +15,7 @@ class PostTest < ActionDispatch::IntegrationTest
     assert_not_empty micropost.errors
 
     # 画像投稿成功
-    valid_image = fixture_file_upload('test/fixtures/test.png', 'image/jpng')
+    valid_image = fixture_file_upload('test/fixtures/test.png', 'image/png')
     post microposts_path, params: { micropost: { image: valid_image } }
     micropost = assigns(:micropost)
     assert_redirected_to micropost
@@ -23,7 +23,7 @@ class PostTest < ActionDispatch::IntegrationTest
     assert_template 'microposts/show'
 
     # ログアウトする
-    delete destroy_user_session_path
+    logout(:user)
 
     # twoとしてログイン
     user = users(:two)
@@ -36,17 +36,22 @@ class PostTest < ActionDispatch::IntegrationTest
     post comments_path, params: { comment: { content: "  " },
                              micropost_id: micropost.id }
     # ココにフラシュかなんかが必要
+    # フロントエンドによるlayoutの変化？？
 
     # コメント成功
     content = "I am happy."
     post comments_path, params: { comment: { content: content },
                              micropost_id: micropost.id }
+
+    # ココで通知されるtest書こう！！
+
     assert_redirected_to micropost
     follow_redirect!
     assert_template 'microposts/show'
     assert_match content, response.body
 
-    # 後ほどfabo機能追加
+    # twoがmicropostのいいねボタンを押す
+    #post likes_path, params: { like: { user_id: user.id } }
 
   end
 end

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # Userのインスタンスが消えるとMicropostも消える
   has_many :microposts, dependent: :destroy
   has_many :comments,   dependent: :destroy
+  has_many :likes,      dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
