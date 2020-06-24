@@ -3,7 +3,7 @@ require 'test_helper'
 class MicropostsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user      = users(:one)
-    @micropost = microposts(:one)
+    @micropost = set_micropost(@user)
   end
 
   test "should not get new" do
@@ -19,7 +19,7 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get new" do
+  test "should not get show" do
     get micropost_path(@micropost)
     assert_redirected_to root_path
     follow_redirect!
