@@ -10,7 +10,7 @@ preload_app!
 plugin :tmp_restart
 
 
-### local環境のSSL化
+## local環境のSSL化
 # if Rails.env.development?
 #   cert = ENV['CERT_PATH']
 #   key  = ENV['KEY_PATH']

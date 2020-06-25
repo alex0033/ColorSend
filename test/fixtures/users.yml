@@ -12,7 +12,7 @@ one:
   provider:           "facebook"
   uid:                "12344556"
   image:              "https://localhost:3000"
-  phone_number:       0901111111
+  phone_number:       "0901111111"
 
 two:
   id:                 2
@@ -22,7 +22,7 @@ two:
   provider:           "facebook"
   uid:                "111111112"
   image:              "https://localhost:3000"
-  phone_number:       09011111112
+  phone_number:       "09011111112"
 
 three:
   id:                 3
@@ -32,7 +32,7 @@ three:
   provider:           "facebook"
   uid:                "111111113"
   image:              "https://localhost:3000"
-  phone_number:       09011111112
+  phone_number:       "09011111112"
 
 four:
   id:                 4
@@ -42,4 +42,4 @@ four:
   provider:           "facebook"
   uid:                "111111114"
   image:              "https://localhost:3000"
-  phone_number:       09011111112
+  phone_number:       "09011111112"

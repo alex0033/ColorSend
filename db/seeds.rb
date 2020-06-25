@@ -13,7 +13,7 @@ first_user = User.create( name:                  "first_user",
                           provider:              "facebook",
                           uid:                   "12344556",
                           image:                 "https://placehold.jp/004070/ffffff/50x50.png",
-                          phone_number:          9011110000 )
+                          phone_number:          "09011110000" )
 first_micropost = first_user.microposts.build
 first_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                              filename: 'test.png')
