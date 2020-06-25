@@ -15,7 +15,7 @@ class LayoutsTest < ActionDispatch::IntegrationTest
     login_as(@following_user, scope: :user)
     get  root_path
     # tuuti
-    # serchbox
+    # searchbox
     assert_select 'a[href=?]', user_path(@following_user)
     assert_select 'a[href=?]', user_registration_path, method: :delete
     # 通じるか分からない

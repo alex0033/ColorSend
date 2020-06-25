@@ -7,7 +7,7 @@ class MicropostsController < ApplicationController
 
   def create
     #この行、micropost_paramsはいらないかも
-    @micropost = current_user.microposts.build(micropost_params)
+    @micropost = current_user.microposts.build(title: params[:micropost][:title])
 
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
@@ -31,11 +31,5 @@ class MicropostsController < ApplicationController
     flash[:success] = "Success destroy"
     redirect_to root_url
   end
-
-  private
-
-    def micropost_params
-      params.require(:micropost).permit(:image)
-    end
 
 end

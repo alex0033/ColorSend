@@ -5,6 +5,9 @@
     <%= form_with(model: @micropost, local: true) do |f| %>
       <%= render "devise/shared/error_messages", resource: f.object %>
 
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-controll" %><br>
+
       <span class="image">
         <%= f.file_field :image %>
       </span>

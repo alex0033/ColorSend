@@ -13,7 +13,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def set_micropost(user)
-    micropost = user.microposts.build
+    micropost = user.microposts.build(title: "title")
     image = fixture_file_upload('test/fixtures/test.png', 'image/png')
     micropost.image.attach(image)
     micropost.save

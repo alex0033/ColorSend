@@ -14,10 +14,6 @@ first_user = User.create( name:                  "first_user",
                           uid:                   "12344556",
                           image:                 "https://placehold.jp/004070/ffffff/50x50.png",
                           phone_number:          "09011110000" )
-first_micropost = first_user.microposts.build
-first_micropost.image.attach(io: File.open('app/assets/images/test.png'),
-                             filename: 'test.png')
-first_micropost.save
 
 20.times do |n|
   user = User.create( name:                  "user#{n}",
@@ -27,7 +23,7 @@ first_micropost.save
                       provider:              "facebook",
                       uid:                   "#{10000 + n}",
                       image:                 "https://placehold.jp/3d4070/ffffff/50x50.png")
-  user_micropost = user.microposts.build
+  user_micropost = user.microposts.build(title: "title#{n}")
   user_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                               filename: 'test.png')
   user_micropost.save
@@ -35,7 +31,7 @@ first_micropost.save
 end
 
 5.times do |n|
-  user_micropost = first_user.microposts.build
+  user_micropost = first_user.microposts.build(title: "title")
   user_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                               filename: 'test.png')
   user_micropost.save

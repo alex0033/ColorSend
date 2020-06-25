@@ -16,7 +16,7 @@ class PostTest < ActionDispatch::IntegrationTest
 
     # 画像投稿成功
     valid_image = fixture_file_upload('test/fixtures/test.png', 'image/png')
-    post microposts_path, params: { micropost: { image: valid_image } }
+    post microposts_path, params: { micropost: { title: "title", image: valid_image } }
     micropost = assigns(:micropost)
     assert_redirected_to micropost
     follow_redirect!

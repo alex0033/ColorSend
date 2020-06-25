@@ -5,6 +5,7 @@ class Micropost < ApplicationRecord
 
   has_one_attached :image
 
+  validates :title, presence: true, length: { maximum: 50 }
   validates :image, attached: true,
                     content_type: { in: %w[image/jpeg image/png],
                                message: "must be a valid image format" },
@@ -15,6 +16,10 @@ class Micropost < ApplicationRecord
 
   def display_image
     image.variant(resize_to_limit: [500, 500])
+  end
+
+  def Micropost.search(search)
+    Micropost.where(['title LIKE ?', "%#{search}%"])
   end
 
 end
