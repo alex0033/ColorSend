@@ -4,6 +4,7 @@ require 'rails/test_help'
 include ActionDispatch::TestProcess
 
 class ActiveSupport::TestCase
+  include Warden::Test::Helpers
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 

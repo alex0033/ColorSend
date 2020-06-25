@@ -1,5 +1,5 @@
 require 'test_helper'
-include Warden::Test::Helpers
+
 
 class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
 

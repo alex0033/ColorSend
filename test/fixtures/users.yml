@@ -12,7 +12,7 @@ one:
   provider:           "facebook"
   uid:                "12344556"
   image:              "https://localhost:3000"
-  phone_number:       11111111111
+  phone_number:       0901111111
 
 two:
   id:                 2
@@ -20,6 +20,26 @@ two:
   user_name:          "sec"
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   provider:           "facebook"
-  uid:                "111111111"
+  uid:                "111111112"
   image:              "https://localhost:3000"
-  phone_number:       132333111111
+  phone_number:       09011111112
+
+three:
+  id:                 3
+  name:               "third"
+  user_name:          "th"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  provider:           "facebook"
+  uid:                "111111113"
+  image:              "https://localhost:3000"
+  phone_number:       09011111112
+
+four:
+  id:                 4
+  name:               "forth"
+  user_name:          "fo"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  provider:           "facebook"
+  uid:                "111111114"
+  image:              "https://localhost:3000"
+  phone_number:       09011111112

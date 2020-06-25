@@ -1,5 +1,5 @@
 require 'test_helper'
-include Warden::Test::Helpers
+
 
 class LayoutsTest < ActionDispatch::IntegrationTest
   def setup

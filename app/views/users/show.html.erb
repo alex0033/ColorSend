@@ -15,9 +15,10 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    登録情報の変更は<%= link_to "こちら", edit_user_registration_path %>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+    <%= render 'follow_form' %>
     <% if @microposts %>
       <% @which_micropost = "image_plus_post" %>
       <h3>Microposts (<%= @microposts.count %>)</h3>

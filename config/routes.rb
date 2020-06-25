@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:index, :show] do
-    get :following, :followers
+    member do
+      get :following, :followers
+    end
   end
 
   resources :microposts,    only: [:new, :create, :show, :destroy]

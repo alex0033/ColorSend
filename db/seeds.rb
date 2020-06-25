@@ -12,8 +12,8 @@ first_user = User.create( name:                  "first_user",
                           password_confirmation: "password",
                           provider:              "facebook",
                           uid:                   "12344556",
-                          image:                 "https://localhost:3000",
-                          phone_number:          11111111111 )
+                          image:                 "https://placehold.jp/004070/ffffff/50x50.png",
+                          phone_number:          9011110000 )
 first_micropost = first_user.microposts.build
 first_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                              filename: 'test.png')
@@ -26,12 +26,12 @@ first_micropost.save
                       password_confirmation: "password",
                       provider:              "facebook",
                       uid:                   "#{10000 + n}",
-                      image:                 "https://localhost:3000",
-                      phone_number:          8000000 + n )
+                      image:                 "https://placehold.jp/3d4070/ffffff/50x50.png")
   user_micropost = user.microposts.build
   user_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                               filename: 'test.png')
   user_micropost.save
+  user.follow(first_user)
 end
 
 5.times do |n|
@@ -39,4 +39,8 @@ end
   user_micropost.image.attach(io: File.open('app/assets/images/test.png'),
                               filename: 'test.png')
   user_micropost.save
+end
+
+20.times do |n|
+  first_user.follow(User.find_by(uid: "#{10000 + n}"))
 end
