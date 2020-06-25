@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     :registrations      => 'users/registrations',
     :sessions           => 'users/sessions'
   }
-  resources :users,         only: [:index, :show]
+
+  resources :users, only: [:index, :show] do
+    get :following, :followers
+  end
+
   resources :microposts,    only: [:new, :create, :show, :destroy]
   resources :comments,      only: [:create, :destroy]
   resources :likes,         only: [:create, :destroy]
