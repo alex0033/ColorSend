@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @comment.micropost = @micropost
     if @comment.save
+      current_user.create_comment_notification(@micropost)
       redirect_to @micropost and return
     else
       @comments = @micropost.comments

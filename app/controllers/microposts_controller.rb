@@ -6,9 +6,7 @@ class MicropostsController < ApplicationController
   end
 
   def create
-    #この行、micropost_paramsはいらないかも
     @micropost = current_user.microposts.build(title: params[:micropost][:title])
-
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
       flash[:success] = "Successful creation of micropost"

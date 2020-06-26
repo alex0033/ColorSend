@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_061838) do
+ActiveRecord::Schema.define(version: 2020_06_25_221111) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,19 @@ ActiveRecord::Schema.define(version: 2020_06_25_061838) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "micropost_id", null: false
+    t.boolean "checked", default: false
+    t.string "which_do"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_notifications_on_micropost_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -97,4 +110,5 @@ ActiveRecord::Schema.define(version: 2020_06_25_061838) do
   add_foreign_key "likes", "microposts"
   add_foreign_key "likes", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "notifications", "microposts"
 end
