@@ -57,7 +57,29 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
+// user_info
+.user_info {
+  display: flex;
+  .user_text {
+    margin-left: 10px;
+  }
+}
 
+
+// micropost
+.panel-default {
+  .panel-footer {
+    display: flex;
+    justify-content: space-between;
+    .icons {
+      display: flex;
+      .comment_icon {
+        margin-left: 10px;
+      }
+    }
+
+  }
+}
 
 
 
