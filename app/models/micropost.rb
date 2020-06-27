@@ -18,7 +18,7 @@ class Micropost < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
 
   def display_image
-    image.variant(resize_to_limit: [500, 500])
+    image.variant(resize_to_fill: [300, 300])
   end
 
   def Micropost.search(search)
