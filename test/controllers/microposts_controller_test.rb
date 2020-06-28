@@ -10,7 +10,7 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     get new_micropost_path
     assert_redirected_to root_path
     follow_redirect!
-    assert_match error_message, response.body
+    assert_not_empty flash
   end
 
   test "should get new" do
@@ -23,7 +23,7 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     get micropost_path(@micropost)
     assert_redirected_to root_path
     follow_redirect!
-    assert_match error_message, response.body
+    assert_not_empty flash
   end
 
   test "should get show" do
@@ -39,14 +39,14 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "wrong user sholud not delete" do
-    login_as(@two, scope: :user)
+    login_as(users(:two), scope: :user)
     assert_difference 'Micropost.count', 0 do
       delete micropost_path(@micropost)
     end
   end
 
   test "correct user can delete" do
-    login_as(@one, scope: :user)
+    login_as(@user, scope: :user)
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(@micropost)
     end

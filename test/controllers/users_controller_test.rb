@@ -11,7 +11,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_url
     assert_redirected_to root_path
     follow_redirect!
-    assert_match error_message, response.body
+    assert_not_empty flash
   end
 
   test "should get index" do
@@ -30,7 +30,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_path(@user)
     assert_redirected_to root_path
     follow_redirect!
-    assert_match error_message, response.body
+    assert_not_empty flash
   end
 
 end

@@ -19,4 +19,13 @@ class ActiveSupport::TestCase
     micropost.save
     return micropost.reload
   end
+
+  def set_like(user, micropost)
+    user.likes.create!(micropost: micropost)
+  end
+
+  def set_comment(user, micropost)
+     user.comments.create!(micropost: micropost, content: "I am happy")
+  end
+
 end

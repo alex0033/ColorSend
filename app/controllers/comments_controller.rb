@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user_and_comment, only: :destroy
+  before_action :check_correct_user,   only: :destroy
 
   def create
     @comment = current_user.comments.build(content: params[:comment][:content])
-
-    # render先でも使うために
+    # redirect先でも使うために
     # micropost_idではなく、micropostを利用
     @micropost = Micropost.find(params[:micropost_id])
     @comment.micropost = @micropost
@@ -18,13 +19,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-
+    @comment.destroy
+    redirect_to @comment.micropost
   end
 
   private
 
-  # def comment_params
-  #   params.require(:comment).permit(:comment, :micropost_id)
-  # end
+    def set_user_and_comment
+      @comment = Comment.find(params[:id])
+      @user    = @comment.user
+    end
 
 end
