@@ -7,7 +7,7 @@
                          placeholder: "コメントを入力してください" %><br>
 
     <%= hidden_field_tag :micropost_id, @micropost.id %>
-    
+
     <%= f.submit "送信", class: "btn btn-primary mt-3" %><br>
   <% end %>
 </div>
@@ -16,8 +16,6 @@
 <!-- コメント欄 -->
 <% if @comments %>
   <div class="comments">
-    <ul>
-      <%= render @comments %>
-    </ul>
+    <%= render @comments %>
   </div>
 <% end %>

@@ -1,11 +1,11 @@
 <span class="content">
   <!-- Button trigger modal -->
-<button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn" data-toggle="modal" data-target="#modal-<%= micropost.id %>">
   <%= image_tag micropost.display_image %>
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modal-<%= micropost.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

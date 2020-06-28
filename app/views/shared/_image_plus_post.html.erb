@@ -18,11 +18,15 @@
 
   <div class="panel-footer">
     <div class="icons">
-      <div class="like_icon">
-        <%= render 'shared/like', micropost: micropost %>
+      <div class="like_icon" id="like_icon-<%= micropost.id %>">
+        <% if like = current_user.like?(micropost) %>
+          <%= render 'likes/destroy', like: like, micropost: micropost %>
+        <% else %>
+          <%= render 'likes/create', micropost: micropost %>
+        <% end %>
       </div>
       <div class="comment_icon">
-        <%= button_to micropost_path(micropost), method: :get, class: "btn btn-default btn-xs" do %>
+        <%= button_to micropost, method: :get, class: "btn btn-default btn-xs" do %>
           <span class="glyphicon glyphicon-comment"></span>
         <% end %>
       </div>

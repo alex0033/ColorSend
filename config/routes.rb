@@ -14,11 +14,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:index] do
+    collection do
+      delete :all_destroy
+    end
+  end
+
   resources :microposts,    only: [:new, :create, :show, :destroy]
   resources :comments,      only: [:create, :destroy]
   resources :likes,         only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :notifications, only: :index
+
 
   get   'passwords/edit'
   patch 'passwords/update'

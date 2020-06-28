@@ -11,6 +11,13 @@ ul{
   list-style: none;
 }
 
+.separate {
+  display: flex;
+  .second {
+    margin-left: 10px;
+  }
+}
+
 
 
 //typography
@@ -77,23 +84,11 @@ h1, h2, h3, h4, h5, h6, p {
         margin-left: 10px;
       }
     }
-
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// for
+//comment
+.comment {
+  padding: 10px 0;
+  border: 1px solid gray;
+}

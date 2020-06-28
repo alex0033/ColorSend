@@ -2,19 +2,24 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    micropost = Micropost.find(params[:micropost_id])
-    @like = current_user.likes.create!(micropost: micropost)
-    current_user.create_like_notification(micropost)
-    # この先を前回のURLにする？
-    redirect_to micropost_path(micropost)
+    @current_micropost = Micropost.find(params[:micropost_id])
+    @like = current_user.likes.create!(micropost: @current_micropost)
+    current_user.create_like_notification(@current_micropost)
+    respond_to do |format|
+      format.html { redirect_to micropost }
+      format.js
+    end
+
   end
 
   def destroy
     like = Like.find(params[:id])
+    @current_micropost = like.micropost
     like.destroy
-
-    # この先を前回のURLにする？
-    redirect_to like.micropost
+    respond_to do |format|
+      format.html { redirect_to current_micropost }
+      format.js
+    end
   end
 
 end

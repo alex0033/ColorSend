@@ -1,8 +1,17 @@
-<li id="comment-<%= comment.id %>">
-  <% user = comment.user %>
-  <%= image_tag user.image %>
-  <%= user.user_name %><br>
-  <%= comment.content %><br>
-  <%#= link_to "編集", "#" %>
-  <%= link_to "削除", "#" %>
-</li>
+<% user = comment.user %>
+<div class="comment">
+  <div class="separate">
+    <div class="first">
+        <%= image_tag user.image, class: "img-responsive img-circle" %>
+    </div>
+    <div class="second">
+      <strong><%= link_to user.user_name, user %></strong><br>
+      <%= comment.content %>
+    </div>
+  </div>
+  <% if current_user == user %>
+    <div class="text-right">
+      <%= link_to "削除", "#" %>
+    </div>
+  <% end %>
+</div>
