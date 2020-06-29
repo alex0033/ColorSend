@@ -1,5 +1,4 @@
 require 'test_helper'
-include Warden::Test::Helpers
 
 class UserEditTest < ActionDispatch::IntegrationTest
 

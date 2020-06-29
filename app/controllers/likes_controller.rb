@@ -14,6 +14,7 @@ class LikesController < ApplicationController
 
   end
 
+  # DELETE likes/:id
   def destroy
     @current_micropost = @like.micropost
     @like.destroy

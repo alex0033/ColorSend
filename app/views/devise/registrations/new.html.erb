@@ -1,3 +1,4 @@
+<% provide(title: "SignUp") %>
 <h1>Sign up</h1>
 
 <div class="row">
@@ -17,7 +18,7 @@
       <%= f.label :password_confirmation, "Confirmation" %><br>
       <%= f.password_field :password_confirmation, class: "form-controll", value: @user.password_confirmation %><br>
 
-      <%= f.submit "Create my acount", class: "btn btn-primary mt-3" %><br>
+      <%= f.submit "アカウント作成", class: "btn btn-primary mt-3" %><br>
     <% end %>
   </div>
 </div>

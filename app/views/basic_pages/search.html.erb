@@ -1,3 +1,4 @@
+<% provide(title: "Search") %>
 <p>検索</p>
 <%= form_tag(search_path, :method => 'get') do %>
   <%= text_field_tag :search %>
@@ -5,9 +6,9 @@
 <% end %>
 
 <!-- リファクタリングできるかもしれない -->
-<% if defined?(@microposts) && @microposts.size > 0 %>
+<% if @microposts.any? %>
   <% @which_micropost = "image_plus_post" %>
-  <ul class="microposts">
+  <ul class="microposts row">
     <%= render @microposts %>
   <ul>
   <%= will_paginate @microposts %>

@@ -1,3 +1,4 @@
+<% provide(title: "Micropost") %>
 <h1>投稿しよう！！</h1>
 
 <div class="row">
@@ -9,10 +10,20 @@
       <%= f.text_field :title, class: "form-controll" %><br>
 
       <span class="image">
-        <%= f.file_field :image %>
+        <%= f.file_field :image, accept: "image/jpeg, image/png" %>
       </span>
 
       <%= f.submit "Create my acount", class: "btn btn-primary mt-3" %><br>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#micropost_image").bind("change", function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert("Maximum file size is 5MB. Please choose a smaller file.");
+      $("#micropost_image").val("");
+    }
+  });
+</script>

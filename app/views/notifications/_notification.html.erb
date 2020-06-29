@@ -1,9 +1,18 @@
 <li>
-  <table class="table">
+  <table class="table notification-<%= notification.id %>">
     <tr>
       <td>
-        <%= notification.message %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} ago)" %>
+        <%= link_to notification.micropost do %>
+          <%= notification.message %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} ago)" %>
+        <% end %>
       </td>
     </tr>
+    <!-- 通知が見られていないところの色を替える -->
+    <% if !notification.checked? %>
+      <script type="text/javascript">
+        $(".notification-<%= notification.id %>").addClass("bg-info")
+      </script>
+      <% notification.toggle!(:checked) %>
+    <% end %>
   </table>
 </li>

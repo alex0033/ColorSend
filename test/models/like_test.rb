@@ -1,11 +1,10 @@
 require 'test_helper'
-include Warden::Test::Helpers
 
 class LikeTest < ActiveSupport::TestCase
 
   def setup
-    micropost = set_micropost(users(:one))
-    @like = Like.new(user: users(:two), micropost: micropost)
+    @micropost = set_micropost(users(:one))
+    @like = Like.new(user: users(:two), micropost: @micropost)
   end
 
   test "user sholud not nil" do
@@ -19,7 +18,7 @@ class LikeTest < ActiveSupport::TestCase
   end
 
   test "sholud be unique" do
-    duplicate_like = Like.new(user: @like.user, micropost: @like.micropost)
+    duplicate_like = Like.new(user: @like.user, micropost: @micropost)
     assert duplicate_like.save
     assert_not @like.valid?
   end

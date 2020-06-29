@@ -1,5 +1,4 @@
 require 'test_helper'
-include Warden::Test::Helpers
 
 class PostTest < ActionDispatch::IntegrationTest
   test "post, comment, and fabo" do
@@ -49,21 +48,6 @@ class PostTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'microposts/show'
     assert_match content, response.body
-
-    # twoがmicropostのいいねボタンを押す
-    assert_difference 'Like.count', 1 do
-      post likes_path, params: { micropost_id: micropost.id }
-    end
-    like = assigns(:like)
-    assert_redirected_to micropost
-    follow_redirect!
-
-    # twoがいいねボタンを取り消す
-    assert_difference 'Like.count', -1 do
-      delete like_path(like)
-    end
-    assert_redirected_to micropost
-    follow_redirect!
 
   end
 end

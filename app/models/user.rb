@@ -86,10 +86,10 @@ class User < ApplicationRecord
     end
 
   private
-
-     def email_blank_to_nil
-       if self.email.blank?
-         self.email = nil
-       end
+    #emailがblankならnilとして処理する
+    def email_blank_to_nil
+     if self.email.blank?
+       self.email = nil
      end
+    end
 end
