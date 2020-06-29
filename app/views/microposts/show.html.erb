@@ -1,6 +1,15 @@
 <% provide(title: "Micropost") %>
 <h1>Microposts#show</h1>
-<div class="input-form">
+
+<%= render "shared/image_plus_post", micropost: @micropost %>
+<!-- コメント欄 -->
+<% if @comments %>
+  <div class="comments">
+    <%= render @comments %>
+  </div>
+<% end %>
+
+<div class="comment-form">
   <%= form_with(model: @comment, local: true) do |f| %>
     <%= render "devise/shared/error_messages", resource: f.object %>
 
@@ -12,11 +21,3 @@
     <%= f.submit "送信", class: "btn btn-primary mt-3" %><br>
   <% end %>
 </div>
-
-<%= render "shared/image_plus_post", micropost: @micropost %>
-<!-- コメント欄 -->
-<% if @comments %>
-  <div class="comments">
-    <%= render @comments %>
-  </div>
-<% end %>

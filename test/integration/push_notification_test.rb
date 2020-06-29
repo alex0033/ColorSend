@@ -25,7 +25,6 @@ class PushNotificationTest < ActionDispatch::IntegrationTest
     user_name = @visiter.user_name
     message = "\"#{user_name}\"があなたの投稿にコメントしました。"
     assert_match CGI.escapeHTML(message), response.body
-    assert_not assigns(:notifications).first.checked?
     logout(:user)
   end
 
@@ -41,7 +40,6 @@ class PushNotificationTest < ActionDispatch::IntegrationTest
     user_name = @visiter.user_name
     message = "\"#{user_name}\"があなたの投稿にいいねしました。"
     assert_match CGI.escapeHTML(message), response.body
-    assert_not assigns(:notifications).first.checked?
     logout(:user)
   end
 

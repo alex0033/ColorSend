@@ -12,4 +12,7 @@ class BasicPagesController < ApplicationController
     @microposts = Micropost.search(params[:search]).paginate(page: params[:page])
   end
 
+  def user_policy
+  end
+
 end

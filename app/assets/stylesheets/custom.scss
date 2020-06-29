@@ -11,6 +11,10 @@ ul{
   list-style: none;
 }
 
+.main{
+  margin-bottom: 30px;
+}
+
 //flex box
 .separate {
   display: flex;
@@ -78,7 +82,6 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
-
 // micropost
 .panel-default {
   .panel-footer {
@@ -86,8 +89,12 @@ h1, h2, h3, h4, h5, h6, p {
     justify-content: space-between;
     .icons {
       display: flex;
+      align-items: flex-start;
       .comment_icon {
         margin-left: 10px;
+      }
+      form {
+        margin: 0;
       }
     }
   }
@@ -97,4 +104,27 @@ h1, h2, h3, h4, h5, h6, p {
 .comment {
   padding: 10px 0;
   border: 1px solid gray;
+}
+
+// form
+form {
+  margin: 20px 0;
+  input, textarea {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .user_policy_field {
+    margin-bottom: 15px;
+  }
+  #user_user_policy {
+    width: inherit;
+  }
+  #micropost_image{
+      border: none;
+      width: inherit;
+    #file_upload_button {
+      width: inherit;
+    }
+  }
 }

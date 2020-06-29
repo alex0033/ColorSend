@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   root 'basic_pages#home'
-  get  'search' => 'basic_pages#search'
+  get  'search'      => 'basic_pages#search'
+  get  'user_policy' => 'basic_pages#user_policy'
 
   devise_for :users, controllers: {
     :omniauth_callbacks => 'users/omniauth_callbacks',
@@ -24,7 +26,6 @@ Rails.application.routes.draw do
   resources :comments,      only: [:create, :destroy]
   resources :likes,         only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-
 
   get   'passwords/edit'
   patch 'passwords/update'

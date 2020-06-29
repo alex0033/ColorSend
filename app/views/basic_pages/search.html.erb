@@ -1,5 +1,5 @@
 <% provide(title: "Search") %>
-<p>検索</p>
+<h2>検索</h2>
 <%= form_tag(search_path, :method => 'get') do %>
   <%= text_field_tag :search %>
   <%= submit_tag 'Search', :name => nil %>

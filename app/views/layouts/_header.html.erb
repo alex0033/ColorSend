@@ -7,12 +7,18 @@
       <div class="header-list">
         <ul class="row">
           <% if user_signed_in? %>
-            <li class="col-xs-3 search"><%= link_to "", search_path, class: "glyphicon glyphicon-search" %></li>
+            <li class="col-xs-3 search">
+              <%= link_to "", search_path, class: "glyphicon glyphicon-search" %>
+            </li>
             <li class="col-xs-3 bell">
               <%= link_to "", notifications_path, class: "glyphicon glyphicon-bell" %>
             </li>
-            <li class="col-xs-3 user"><%= link_to "", current_user, class: "glyphicon glyphicon-user" %></li>
-            <li class="col-xs-3 log-out"><%= link_to "", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out"  %></li>
+            <li class="col-xs-3 user">
+              <%= link_to "", current_user, class: "glyphicon glyphicon-user" %>
+            </li>
+            <li class="col-xs-3 log-out">
+              <%= link_to "", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out"  %>
+            </li>
           <% else %>
             <li><%= link_to "サインイン", user_facebook_omniauth_authorize_path %>
           <% end %>
@@ -22,7 +28,8 @@
   </div>
 </header>
 
-<% if current_user.passive_notifications.find_by(checked: false) %>
+<% if user_signed_in? &&
+      current_user.passive_notifications.find_by(checked: false) %>
   <script type="text/javascript">
     $(".bell").addClass("bg-info");
     console.log("come here")

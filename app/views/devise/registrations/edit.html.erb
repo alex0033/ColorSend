@@ -1,5 +1,5 @@
 <% provide(title: "Edit") %>
-<h1>Sign up</h1>
+<h2>ユーザー編集</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -7,34 +7,33 @@
       <%= render "devise/shared/error_messages", resource: f.object %>
 
       <h3>(公開情報)</h3>
-      <%= f.label :name %><br>
-      <%= f.text_field :name, class: "form-controll", value: @user.name %><br>
+      <%= f.label :name, "フルネーム" %>
+      <%= f.text_field :name, class: "form-controll", value: @user.name %>
 
-      <%= f.label :user_name %><br>
-      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %><br>
+      <%= f.label :user_name, "ユーザー名" %>
+      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %>
 
-      <%= f.label :website %><br>
-      <%= f.text_field :website, class: "form-controll", value: @user.website %><br>
+      <%= f.label :website, "ウェブサイト" %>
+      <%= f.text_field :website, class: "form-controll", value: @user.website %>
 
-      <%= f.label :self_introduction %><br>
-      <%= f.text_area :self_introduction, class: "form-controll", value: @user.self_introduction %><br>
+      <%= f.label :self_introduction, "自己紹介" %>
+      <%= f.text_area :self_introduction, class: "form-controll", value: @user.self_introduction %>
 
       <h3>(非公開情報)</h3>
-      <%= f.label :email %><br>
-      <%= f.email_field :email, class: "form-controll", value: @user.email %><br>
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-controll", value: @user.email %>
 
-      <%= f.label :phone_number %><br>
-      <%= f.telephone_field :phone_number, class: "form-controll", value: @user.phone_number %><br>
+      <%= f.label :phone_number, "電話番号" %>
+      <%= f.telephone_field :phone_number, class: "form-controll", value: @user.phone_number %>
 
-      <%= f.label :gender %><br>
-      <%= f.text_field :gender, class: "form-controll", value: @user.gender %><br>
+      <%= f.label :gender, "性別" %>
+      <%= f.text_field :gender, class: "form-controll", value: @user.gender %>
 
-      <%= f.submit "アカウント更新", class: "btn btn-primary mt-3" %><br>
+      <%= f.submit "アカウント更新", class: "btn btn-primary mt-3" %>
     <% end %>
+    <p>パスワード変更は<%= link_to "こちら", passwords_edit_path, class: "text-info" %></p>
+    <p>アカウント削除は<%= link_to "こちら", registration_path(resource_name),
+                         data: { confirm: "本当に削除しますか？" },
+                         method: :delete, class: "text-info" %></p>
   </div>
 </div>
-
-<p>パスワード変更は<%= link_to "こちら", passwords_edit_path %></p>
-<%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-danger" %>
-
-<%= link_to "Back", :back %>

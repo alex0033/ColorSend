@@ -6,19 +6,24 @@
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render "devise/shared/error_messages", resource: f.object %>
 
-      <%= f.label :name %><br>
-      <%= f.text_field :name, class: "form-controll", value: @user.name %><br>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-controll", value: @user.name %>
 
-      <%= f.label :user_name %><br>
-      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %><br>
+      <%= f.label :user_name %>
+      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %>
 
-      <%= f.label :password %><br>
-      <%= f.password_field :password, class: "form-controll", value: @user.password %><br>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-controll", value: @user.password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %><br>
-      <%= f.password_field :password_confirmation, class: "form-controll", value: @user.password_confirmation %><br>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: "form-controll", value: @user.password_confirmation %>
 
-      <%= f.submit "アカウント作成", class: "btn btn-primary mt-3" %><br>
+      <p class="user_policy_field">
+        <%= f.check_box :user_policy %>
+        <%= link_to "利用規約", user_policy_path, target: :_blank, class: "text-info" %>を確認しました
+      </p>
+
+      <%= f.submit "アカウント作成", class: "btn btn-primary mt-3" %>
     <% end %>
   </div>
 </div>
