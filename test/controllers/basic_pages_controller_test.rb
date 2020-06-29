@@ -6,4 +6,9 @@ class BasicPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "not signed in user should not get search" do
+    get search_path
+    assert_redirected_to root_path
+  end
+
 end

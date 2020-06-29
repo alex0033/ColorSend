@@ -22,12 +22,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_hash)
     uid_filter @user.uid
-    if @user.save
+    # @userにエラーメッセージを入れるためにsaveの前にvaild?を使用
+    if @user.valid? && user_policy_read?
+      @user.save
       sign_in @user
-      redirect_to @user
-    else
-      render 'devise/registrations/new'
+      redirect_to @user and return
+    elsif !user_policy_read?
+      @user.errors.add(:user_policy, "not read user_policy")
     end
+    render 'devise/registrations/new'
   end
 
   # GET /resource/edit
@@ -35,10 +38,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = current_user
   end
 
+
   # PUT /resource
+  # @userにcurrent_userが入っている
   def update
-    @user.update(edit_params)
-    if @user.save
+    if @user.update(edit_params)
       flash[:sucess] = "success edit"
       redirect_to @user
     else
@@ -133,6 +137,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def check_objects(object, first_keyword, second_keyword)
       object && object[first_keyword] &&
              object[first_keyword][second_keyword]
+    end
+
+    def user_policy_read?
+      params[:user][:user_policy] == "1"
     end
 
 end
