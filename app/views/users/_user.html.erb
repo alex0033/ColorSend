@@ -1,4 +1,4 @@
-<li>
-  <%= image_tag user.image %>
-  <%= link_to user.user_name, user %>
+<li class="user_info">
+  <%= image_tag user.image, class: "img-responsive img-circle" %>
+  <%= link_to user.user_name, user, class: "user_text" %>
 </li>

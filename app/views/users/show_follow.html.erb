@@ -2,17 +2,19 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= image_tag @user.image %>
-      <h1><%= @user.user_name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b><%= @user.microposts.count%></span>
+      <%= image_tag @user.image, class: "img-responsive img-circle" %>
+      <div class="user_text">
+        <strong><%= link_to @user.user_name, @uesr %></strong><br>
+        <span><b>Microposts:</b><%= @user.microposts.count%></span>
+      </div>
+
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
-      <% if @users %>
-        <div class="user_avatars">
+      <% if @users.any? %>
+        <div class="user_avatars user_info">
           <% @users.each do |user| %>
-            <%= link_to image_tag(user.image), user %>
+            <%= link_to image_tag(user.image), user, class: "img-responsive img-circle" %>
           <% end %>
         </div>
       <% end %>

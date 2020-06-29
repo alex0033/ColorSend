@@ -2,24 +2,41 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
-        <%= image_tag @user.image %>
-        <%= @user.user_name %>
-      </h1>
-      <h3>
-        <%= @user.name %><br>
-      </h3>
-        <%= @user.self_introduction %><br>
-        <%= @user.website %><br>
+      <%= image_tag @user.image, class: "img-responsive img-circle" %>
+      <div class="user_text">
+        <strong><%= link_to @user.user_name, @user %></strong><br>
+        <%= @user.name %>
+      </div>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-    登録情報の変更は<%= link_to "こちら", edit_user_registration_path %>
+    <div class="text_box">
+      <h5>自己紹介</h5>
+      <% if @user.self_introduction.blank? %>
+        <p class="text-secondary">未入力</p>
+      <% else %>
+        <p><%= @user.self_introduction %></p>
+      <% end %>
+    </div>
+    <div class="text_box">
+      <h5>ウェブサイト</h5>
+      <% if @user.website.blank? %>
+        <p class="text-secondary">未入力</p>
+      <% else %>
+        <p><%= @user.website %></p>
+      <% end %>
+    </div class="text_box">
+    <% if @user == current_user %>
+      <p class="edit_info">
+        登録情報の変更は<%= link_to "こちら", edit_user_registration_path, class: "text-info" %>
+      </p>
+    <% end %>
+
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' %>
-    <% if @microposts %>
+    <% if @microposts.any? %>
       <% @which_micropost = "image_only_post" %>
       <h3>Microposts (<%= @microposts.count %>)</h3>
       <ul class="microposts">
