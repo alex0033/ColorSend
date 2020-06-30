@@ -5,7 +5,7 @@ class FacebookAuthenticateTest < ActionDispatch::IntegrationTest
 
   test "delete account" do
     user = users(:one)
-    login_as(user, scope: :user)
+    login_as(user)
     get user_path(user)
     assert_select 'a[href=?]', edit_user_registration_path
     get edit_user_registration_path

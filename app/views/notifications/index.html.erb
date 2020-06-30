@@ -5,7 +5,7 @@
     <h7 style="color: black;">全削除</h7>
   <% end %>
   <hr>
-<% if @notifications.exists? %>
+<% if @notifications.any? %>
   <ul class="notifications">
     <table class="table">
       <%= render @notifications %>

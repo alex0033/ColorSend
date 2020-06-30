@@ -10,7 +10,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
 
   test "user edit" do
     @user = users(:one)
-    login_as(@user, scope: :user)
+    login_as(@user)
     get edit_user_registration_path
     assert_match @user.name,              response.body
     assert_match @user.user_name,         response.body

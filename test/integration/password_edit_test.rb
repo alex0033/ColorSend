@@ -8,7 +8,7 @@ class PasswordEditTest < ActionDispatch::IntegrationTest
     new_password     = "foobar"
     @user = users(:one)
 
-    login_as(@user, scope: :user)
+    login_as(@user)
     assert @user.valid_password?(current_password)
     assert_not @user.valid_password?(new_password)
     get passwords_edit_path

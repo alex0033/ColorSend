@@ -14,13 +14,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    login_as(@user, scope: :user)
+    login_as(@user)
     get users_url
     assert_response :success
   end
 
   test "should get show" do
-    login_as(@user, scope: :user)
+    login_as(@user)
     get user_path(@user)
     assert_response :success
   end

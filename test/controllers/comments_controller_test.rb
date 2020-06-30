@@ -23,14 +23,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "wrong user sholud not delete" do
-    login_as(users(:two), scope: :user)
+    login_as(users(:two))
     assert_difference 'Comment.count', 0 do
       delete comment_path(@comment)
     end
   end
 
   test "correct user can delete" do
-    login_as(@user, scope: :user)
+    login_as(@user)
     assert_difference 'Comment.count', -1 do
       delete comment_path(@comment)
     end

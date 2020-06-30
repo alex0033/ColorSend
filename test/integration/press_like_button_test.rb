@@ -4,7 +4,7 @@ class PressLikeButtonTest < ActionDispatch::IntegrationTest
 
   def setup_for_create
     @micropost = set_micropost(users(:one))
-    login_as(users(:two), scope: :user)
+    login_as(users(:two))
   end
 
   def setup_for_destroy
@@ -12,7 +12,7 @@ class PressLikeButtonTest < ActionDispatch::IntegrationTest
     two = users(:two)
     @micropost = set_micropost(one)
     @like      = set_like(two, @micropost)
-    login_as(two, scope: :user)
+    login_as(two)
   end
 
   test "create like the standard way" do

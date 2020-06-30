@@ -21,14 +21,14 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "wrong user sholud not delete" do
-    login_as(users(:two), scope: :user)
+    login_as(users(:two))
     assert_difference 'Like.count', 0 do
       delete like_path(@like)
     end
   end
 
   test "correct user can delete" do
-    login_as(@user, scope: :user)
+    login_as(@user)
     assert_difference 'Like.count', -1 do
       delete like_path(@like)
     end

@@ -3,7 +3,7 @@ require 'test_helper'
 class SearchTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
-    login_as(@user, scope: :user)
+    login_as(@user)
     @micropost = set_micropost(@user)
   end
 
