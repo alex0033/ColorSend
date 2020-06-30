@@ -11,7 +11,7 @@ ul{
 }
 
 .main{
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 //user_info
@@ -23,9 +23,20 @@ ul{
 
 .user_info {
   display: flex;
+  img{
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+  }
   .user_text {
     margin-left: 10px;
   }
+}
+
+// _userパーシャル
+.user_partial {
+  align-items: center;
+  margin: 5px 0;
 }
 
 //users_show
@@ -38,6 +49,8 @@ ul{
 .edit_info {
   margin-top: 30px;
 }
+
+
 
 
 //error
@@ -64,9 +77,12 @@ form {
   .user_policy_field {
     margin-bottom: 15px;
   }
+
   #user_user_policy {
     width: inherit;
   }
+
+  // microposts_new
   #micropost_image{
       border: none;
       width: inherit;
@@ -179,5 +195,4 @@ form {
       }
     }
   }
-
 }

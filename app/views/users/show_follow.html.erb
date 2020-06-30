@@ -2,7 +2,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= image_tag @user.image, class: "img-responsive img-circle" %>
+      <%= image_tag @user.image %>
       <div class="user_text">
         <strong><%= link_to @user.user_name, @uesr %></strong><br>
         <span><b>Microposts:</b><%= @user.microposts.count%></span>
@@ -12,9 +12,9 @@
     <section class="stats">
       <%= render 'shared/stats' %>
       <% if @users.any? %>
-        <div class="user_avatars user_info">
+        <div class="user_info">
           <% @users.each do |user| %>
-            <%= link_to image_tag(user.image), user, class: "img-responsive img-circle" %>
+            <%= link_to image_tag(user.image), user %>
           <% end %>
         </div>
       <% end %>
