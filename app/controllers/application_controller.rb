@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     # 必ずset user_and_? と一緒に使う
     def check_correct_user
       if @user != current_user
-        flash[:danger] = "You are not be authenticated."
+        flash[:alert] = "認証していません"
         redirect_to root_path
       end
     end

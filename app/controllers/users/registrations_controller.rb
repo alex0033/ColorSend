@@ -4,6 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params,        only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+
+  #このコントローラーでは、
+
   # GET /resource/sign_up
   # facebook認証後のみサインアップページへ行ける
   # nameとuidのみ取り出し、利用する
@@ -34,16 +37,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
-    @user = current_user
-  end
+  # def edit
+  #   super
+  # end
 
 
   # PUT /resource
   # @userにcurrent_userが入っている
   def update
     if @user.update(edit_params)
-      flash[:sucess] = "success edit"
+      flash[:notice] = "ユーザー情報を編集しました"
       redirect_to @user
     else
       render 'devise/registrations/edit'
@@ -70,10 +73,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # def configure_sign_up_params
     #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :user_name])
     # end
-    #
-    # # If you have extra params to permit, append them to the sanitizer.
+
+    # If you have extra params to permit, append them to the sanitizer.
     # def configure_account_update_params
-    #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_name])
+    #   devise_parameter_sanitizer.permit(:account_update,
+    #     keys: [:name, :user_name, :self_introduction, :email, :website, :gender])
     # end
 
     # The path used after sign up.
@@ -122,7 +126,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def authenticate_error
-      flash[:danger] = "Please click 'さぁ、はじめよう' to login facebook."
+      flash[:alert] = "\"さぁ、はじめよう\"をクリックして、facebook認証を行ってください"
       redirect_to root_url
     end
 
