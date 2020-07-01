@@ -73,8 +73,8 @@ class User < ApplicationRecord
 
   def create_like_notification(micropost)
     active_notifications.create!( visited: micropost.user,
-                               micropost: micropost,
-                                which_do: "いいね" )
+                                micropost: micropost,
+                                 which_do: "いいね" )
   end
 
 
