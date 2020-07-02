@@ -12,8 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # nameとuidのみ取り出し、利用する
   def new
     if auth = set_object(session, "devise.facebook_data")
-      auth_uid  = auth["uid"]
-      uid_filter auth_uid
+      uid_filter auth["uid"]
       @user = User.new
       @user.name = set_object auth["info"], "name"
     else
@@ -31,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in @user
       redirect_to @user and return
     elsif !user_policy_read?
-      @user.errors.add(:user_policy, "not read user_policy")
+      @user.errors.add(:user_policy, "を読んで下さい")
     end
     render 'devise/registrations/new'
   end

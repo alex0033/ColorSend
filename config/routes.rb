@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   get  'search'      => 'basic_pages#search'
   get  'user_policy' => 'basic_pages#user_policy'
 
-  devise_for :users, controllers: {
+  devise_for :users, :skip => [:passwords], controllers: {
     :omniauth_callbacks => 'users/omniauth_callbacks',
-    :registrations      => 'users/registrations'
+    :registrations      => 'users/registrations',
+    :sessions           => 'users/sessions'
   }
 
   resources :users, only: [:index, :show] do

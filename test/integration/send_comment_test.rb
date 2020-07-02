@@ -24,4 +24,16 @@ class SendCommentTest < ActionDispatch::IntegrationTest
     assert_match content, response.body
   end
 
+  test "destroy comment" do
+    content = "I am happy."
+    post comments_path, params: { comment: { content: content },
+                             micropost_id: @micropost.id }
+    comment = assigns(:comment)
+    assert_redirected_to @micropost
+    follow_redirect!
+
+    delete comment_path, params: { id: comment.id }
+    assert_redirected_to @micropost
+  end
+
 end

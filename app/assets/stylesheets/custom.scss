@@ -78,9 +78,11 @@ form {
     margin-bottom: 15px;
   }
 
-  #user_user_policy {
+  input[type="checkbox"] {
     width: inherit;
   }
+
+
 
   // microposts_new
   #micropost_image{

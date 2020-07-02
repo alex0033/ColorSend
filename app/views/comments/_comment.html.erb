@@ -11,7 +11,7 @@
   </div>
   <% if current_user == user %>
     <div class="text-right">
-      <%= link_to "", comment_path, method: :delete, class: "glyphicon glyphicon-trash" %>
+      <%= link_to "", comment_path(comment), method: :delete, class: "glyphicon glyphicon-trash" %>
     </div>
   <% end %>
 </div>

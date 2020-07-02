@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    flash[:notice] = "コメントを削除しました"
     redirect_to @comment.micropost
   end
 

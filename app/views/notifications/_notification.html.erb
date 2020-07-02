@@ -3,7 +3,7 @@
     <tr>
       <td>
         <%= link_to notification.micropost do %>
-          <%= notification.message %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} ago)" %>
+          <%= notification.message %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
         <% end %>
       </td>
     </tr>

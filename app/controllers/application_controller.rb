@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  
   private
     # 必ずset user_and_? と一緒に使う
     def check_correct_user

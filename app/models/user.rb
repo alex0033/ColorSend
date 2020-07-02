@@ -19,10 +19,11 @@ class User < ApplicationRecord
                                   foreign_key: "visited_id", dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: [:facebook],
+         :authentication_keys => [:user_name]
 
   validates :name,      presence: true,  length: { maximum: 50 }
-  validates :user_name, presence: true,  length: { maximum: 50 }
+  validates :user_name, presence: true,  length: { maximum: 50 }, uniqueness: true
   validates :uid,       presence: true,  uniqueness: true
   validates :self_introduction, length: { maximum: 500 }
   validates :website,           length: { maximum: 500 }
@@ -40,6 +41,17 @@ class User < ApplicationRecord
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
+    end
+  end
+
+  #usernameを利用してログインするようにオーバーライド
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      #認証の条件式を変更する
+      where(conditions).where(["user_name = :value", { :value => user_name }]).first
+    else
+      where(conditions).first
     end
   end
 
