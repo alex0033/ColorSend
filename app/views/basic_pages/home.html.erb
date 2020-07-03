@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+<div class="main">
+  <%= render 'basic_pages/after_signed_in' %>
+</div>
+<% else %>
+  <%= render 'basic_pages/before_signed_in' %>
+<% end %>

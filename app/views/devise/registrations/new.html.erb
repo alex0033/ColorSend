@@ -1,0 +1,30 @@
+<% provide(title: "SignUp") %>
+<h1>ユーザー登録</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render "shared/error_messages", resource: f.object %>
+
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, class: "form-controll", value: @user.name %>
+
+      <%= f.label :user_name, "ユーザー名" %>
+      <%= f.text_field :user_name, class: "form-controll", value: @user.user_name %>
+
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-controll", value: @user.password %>
+
+      <%= f.label :password_confirmation, "確認パスワード" %>
+      <%= f.password_field :password_confirmation, class: "form-controll", value: @user.password_confirmation %>
+
+      <p class="user_policy_field">
+        <%= f.check_box :user_policy %>
+        <%= link_to "利用規約", user_policy_path, target: :_blank, class: "text-info" %>を確認しました
+      </p>
+
+      <%= f.submit "アカウント作成", class: "btn btn-primary mt-3" %>
+    <% end %>
+    <p>ログインは<%= link_to "こちら", new_user_session_path, class: "text-info" %></p>
+  </div>
+</div>

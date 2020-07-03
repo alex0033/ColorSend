@@ -1,0 +1,17 @@
+<% provide(title: "Search") %>
+<h2>検索</h2>
+<%= form_tag(search_path, method: :get, class: "search-form") do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', name: nil, class: "search-btn" %>
+<% end %>
+
+<!-- リファクタリングできるかもしれない -->
+<% if @microposts.any? %>
+  <% @which_micropost = "image_plus_post" %>
+  <ul class="microposts">
+    <%= render @microposts %>
+  <ul>
+  <%= will_paginate @microposts %>
+<% else %>
+  <span>検索結果は何もありません</span>
+<% end %>

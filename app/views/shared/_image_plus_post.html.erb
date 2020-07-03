@@ -1,0 +1,43 @@
+  <!-- コメントを押すとshowへ飛ぶ -->
+  <!-- <i>コメント</i><%#= micropost.coments.count %> -->
+
+<div class="panel-default">
+  <div class="user_info panel-heading">
+    <div class="user_image">
+      <%= image_tag micropost.user.image %>
+    </div>
+    <div class="user_text">
+      <%= link_to micropost.user.user_name, micropost.user, class: "user_name" %>
+      <p class="text-muted">Posted <%= time_ago_in_words(micropost.created_at) %> 前</p>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= image_tag micropost.display_image %>
+  </div>
+
+  <div class="panel-footer">
+    <div class="icons">
+      <div class="like_icon" id="like_icon-<%= micropost.id %>">
+        <% if like = current_user.like?(micropost) %>
+          <%= render 'likes/destroy', like: like, micropost: micropost %>
+        <% else %>
+          <%= render 'likes/create', micropost: micropost %>
+        <% end %>
+      </div>
+      <div class="comment_icon">
+        <%= button_to micropost, method: :get, class: "btn btn-default btn-xs" do %>
+          <span class="glyphicon glyphicon-comment"></span>
+        <% end %>
+      </div>
+    </div>
+    <% if current_user == micropost.user %>
+      <div class="remove_icon">
+        <%= link_to "", micropost_path(micropost), method: :delete,
+                        data: { confirm: "本当に削除しますか？" }, class: "glyphicon glyphicon-trash" %>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>

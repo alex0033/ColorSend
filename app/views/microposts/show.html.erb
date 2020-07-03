@@ -1,0 +1,23 @@
+<% provide(title: "Micropost") %>
+<h1><%= @micropost.title %></h1>
+
+<%= render "shared/image_plus_post", micropost: @micropost %>
+<!-- コメント欄 -->
+<% if @comments %>
+  <div class="comments">
+    <%= render @comments %>
+  </div>
+<% end %>
+
+<div class="comment-form">
+  <%= form_with(model: @comment, local: true) do |f| %>
+    <%= render "shared/error_messages", resource: f.object %>
+
+    <%= f.text_field :content, class: "form-controll",
+                         placeholder: "コメントを入力してください" %><br>
+
+    <%= hidden_field_tag :micropost_id, @micropost.id %>
+
+    <%= f.submit "送信", class: "btn btn-primary mt-3" %><br>
+  <% end %>
+</div>

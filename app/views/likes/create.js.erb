@@ -1,0 +1,1 @@
+$("#like_icon-<%= @current_micropost.id %>").html("<%= escape_javascript(render('likes/destroy', like: @like))%>");

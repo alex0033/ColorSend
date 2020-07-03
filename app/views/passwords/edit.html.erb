@@ -1,0 +1,20 @@
+<% provide(title: "Edit Password") %>
+<h2>Change your password</h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, url: passwords_update_url, method: :patch, local: true) do |f| %>
+      <%= render "shared/error_messages", resource: f.object %>
+
+      <%= f.label :current_password, "今のパスワード" %>
+      <%= f.password_field :current_password, class: "form-controll" %>
+
+      <%= f.label :password, "新パスワード" %>
+      <%= f.password_field :password, class: "form-controll" %>
+
+      <%= f.label :password_confirmation, "確認用パスワード" %><br>
+      <%= f.password_field :password_confirmation, class: "form-controll" %>
+
+      <%= f.submit "パスワードを更新する", class: "btn btn-primary mt-3" %>
+    <% end %>
+  </div>
+</div>

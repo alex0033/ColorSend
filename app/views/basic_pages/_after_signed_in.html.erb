@@ -1,0 +1,11 @@
+<div class="container">
+  <!-- ココに二つボタン（feed_images, like_imagesの選択） -->
+  <% if @microposts.any? %>
+    <% @which_micropost = "image_only_post" %>
+      <ul class="microposts">
+        <%= render @microposts %>
+      </ul>
+  <% end %>
+
+
+</div>
