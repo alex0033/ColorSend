@@ -1,21 +1,35 @@
 # README
 
 ## 基本情報
-アプリ名：ColorSend
+### アプリ名
+ColorSend
 
-URL：　https://color-send.herokuapp.com
+### URL
+https://color-send.herokuapp.com
 
+### サンプルユーザー
+ユーザー名： sample
+
+パスワード： password
+
+### ログイン方法
+右上のログインボタンをクリック
+
+その次の画面でユーザー名、パスワードをご入力ください
 ## 機能
 アプリの仕様のうち、分かりにくそうなものをピックアップしました。
 
 ### Facebook認証
 認証されているURL(有効なOAuthリダイレクトURI)
+
 ①ローカル環境（設定済み）
 * https://localhost:3001/users/auth/facebook/
 * https://localhost:3001/users/auth/facebook/callback/
+
 ②ローカル環境（未設定）
 * https://localhost:3000/users/auth/facebook/
 * https://localhost:3000/users/auth/facebook/callback/
+
 ③本番環境
 * https://color-send.herokuapp.com/users/auth/facebook
 * https://color-send.herokuapp.com/users/auth/facebook/callback/
