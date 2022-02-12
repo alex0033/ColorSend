@@ -31,7 +31,7 @@ gem 'mini_magick'
 
 gem "aws-sdk-s3", require: false
 
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
